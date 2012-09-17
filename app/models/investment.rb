@@ -1,15 +1,23 @@
 class Investment < ActiveRecord::Base
-  validate :quantity_should_be_positive
-  validate :cost_should_be_positive
+  #validate :quantity_should_be_positive
+  #validate :cost_should_be_positive
+  def worth_at_cost
+    worth=0
+   # portfolio.investment.each do |investment|
+      worth=cost*quantity
+    return worth
 
-  def quantity_should_be_positive
-    if(quantity<0)
-      errors.add :quantity, 'Should be positive'
+
     end
-    def cost_should_be_positive
-      if(cost<0)
-        errors.add :cost, 'Should be positive'
-      end
-    end
+  def worth_today
+    worth=0
+    worth=quantity*company.price
+
   end
-end
+
+
+
+    belongs_to :portfolio
+   #belongs_to :company
+  end
+
